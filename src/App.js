@@ -33,7 +33,7 @@ function App() {
       } = person;
       // get first and last name
       const { first, last } = person.name;
-      const { dob: age } = person;
+      const { age } = person.dob;
       // inside the street we destructure number and name
       const {
          street: { number, name },
@@ -64,7 +64,16 @@ function App() {
    }, []);
 
    const handleValue = (e) => {
-      console.log(e.target);
+      // check when hovering over target
+      // if contains icon class we want to target the data set
+      if (e.target.classList.contains('icon')) {
+         const newValue = e.target.dataset.label;
+
+         // now set the valie to display when click on the icon
+         setTitle(newValue);
+         setValue(person[newValue]);
+      }
+
    };
    return (
       <main>
@@ -89,23 +98,22 @@ function App() {
                   </button>
                   <button
                      className="icon"
-                     data-label="emal"
+                     data-label="email"
                      onMouseOver={handleValue}
                   >
-                     {' '}
-                     <FaEnvelopeOpen />{' '}
+                     <FaEnvelopeOpen />
                   </button>
                   <button
                      className="icon"
                      data-label="age"
                      onMouseOver={handleValue}
                   >
-                     {' '}
+     
                      <FaCalendarTimes />
                   </button>
                   <button
                      className="icon"
-                     data-label="steet"
+                     data-label="street"
                      onMouseOver={handleValue}
                   >
                      <FaMap />
