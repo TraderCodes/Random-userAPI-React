@@ -23,10 +23,45 @@ function App() {
 
       // get first item from results useing results[0]
       const person = data.results[0];
-      console.log(person);
+      //  destructure person
+      const { phone, email } = person;
+      // image
+      // rename large into image
+      const { large: image } = person.picture;
+      const {
+         login: { password },
+      } = person;
+      // get first and last name
+      const { first, last } = person.name;
+      const { dob: age } = person;
+      // inside the street we destructure number and name
+      const {
+         street: { number, name },
+      } = person.location;
+
+      // place in new list
+      const newPerson = {
+         image,
+         phone,
+         email,
+         password,
+         age,
+         street: `${number}${name}`,
+         name: `${first}${last}`,
+      };
+      // now we pass in newPerson into setPerson
+
+      setPerson(newPerson);
+      setLoading(false);
+      // that part is  my "title" is
+      setTitle('name');
+      setValue(newPerson.name);
    };
 
    // useEffect everytime when we fetch a user
+   useEffect(() => {
+      getPerson();
+   }, []);
 
    const handleValue = (e) => {
       console.log(e.target);
