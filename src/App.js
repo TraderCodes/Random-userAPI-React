@@ -16,6 +16,18 @@ function App() {
    const [title, setTitle] = useState('name');
    const [value, setValue] = useState('random person');
 
+   // fetch API getPerson = async
+   const getPerson = async () => {
+      const response = await fetch(url);
+      const data = await response.json();
+
+      // get first item from results useing results[0]
+      const person = data.results[0];
+      console.log(person);
+   };
+
+   // useEffect everytime when we fetch a user
+
    const handleValue = (e) => {
       console.log(e.target);
    };
