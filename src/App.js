@@ -126,7 +126,7 @@ function App() {
                   </button>
                </div>
                {/* button for generator and loading  */}
-               <button className="btn" type="button">
+               <button className="btn" type="button" onClick={getPerson}>
                   {loading ? 'loading' : 'random user'}
                </button>
             </div>
